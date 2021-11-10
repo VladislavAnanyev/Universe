@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.util.Set;
@@ -23,6 +24,7 @@ public class Lord {
     private String name;
 
     @NotNull
+    @Min(value = 0)
     private Integer age;
 
     @OneToMany(mappedBy = "lord", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
