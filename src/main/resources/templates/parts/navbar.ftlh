@@ -35,7 +35,7 @@
                 </li>
 
                 <li class="nav-item mt-1">
-                    <a class="nav-link" href="/lords/youngest10">10 самых молодых повелителей</a>
+                    <a class="nav-link" href="/lords/youngest">10 самых молодых повелителей</a>
                 </li>
 
 

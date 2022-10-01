@@ -1,10 +1,11 @@
-package com.example.test.Repository;
+package com.example.test.repository;
 
-import com.example.test.Model.Lord;
+import com.example.test.model.domain.Lord;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
 import java.util.Set;
 
 @Repository
@@ -14,12 +15,12 @@ public interface LordRepository extends CrudRepository<Lord, Long> {
                 FROM LORDS LEFT OUTER JOIN PLANETS ON LORDS.ID = PLANETS.LORD_ID
                 WHERE LORD_ID IS NULL
         """)
-    Set<Lord> getLoungers();
+    List<Lord> getLoungers();
 
     @Query(nativeQuery = true, value = """
                 SELECT TOP 10 *
                 FROM LORDS
                 ORDER BY AGE
         """)
-    Set<Lord> getTop10YoungestLord();
+    List<Lord> getTop10YoungestLord();
 }

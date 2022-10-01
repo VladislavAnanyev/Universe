@@ -1,6 +1,5 @@
-package com.example.test.Model;
+package com.example.test.model.domain;
 
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 

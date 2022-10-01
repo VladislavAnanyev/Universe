@@ -25,24 +25,18 @@ dependencies {
     testAnnotationProcessor 'org.projectlombok:lombok:1.18.22'
 
     implementation group: 'org.springframework.boot', name: 'spring-boot-starter-validation', version: '2.5.6'
-
-
-
     implementation 'org.springframework.boot:spring-boot-starter'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
 
     // https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-web
     implementation group: 'org.springframework.boot', name: 'spring-boot-starter-web', version: '2.5.6'
 // https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-data-jpa
-    implementation group: 'org.springframework.boot', name: 'spring-boot-starter-data-jpa', version: '2.5.6'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 // https://mvnrepository.com/artifact/com.h2database/h2
     implementation group: 'com.h2database', name: 'h2', version: '1.4.200'
 
 // https://mvnrepository.com/artifact/org.junit.vintage/junit-vintage-engine
     testImplementation group: 'org.junit.vintage', name: 'junit-vintage-engine', version: '5.8.1'
-
-
-
 }
 
 test {

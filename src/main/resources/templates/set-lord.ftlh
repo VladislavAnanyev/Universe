@@ -6,7 +6,7 @@
 
     <#list lords as lord>
         <div class="mt-2">${lord_index+1}.
-            <form action="/planet/${planet.id?c}/set-lord" method="post">
+            <form action="/planet/${planet.id?c}/lord/${lord.id?c}" method="post">
             <div>Идентификатор: ${lord.id?c}</div>
                 <input hidden name="id" type="number" value="${lord.id?c}" >
             <div>Имя: ${lord.name}</div>

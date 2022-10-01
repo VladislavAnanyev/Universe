@@ -1,16 +1,12 @@
-package com.example.test.Controllers;
+package com.example.test.controllers.web;
 
-import com.example.test.Model.Lord;
-import com.example.test.Model.Planet;
-import com.example.test.Repository.PlanetRepository;
-import com.example.test.Service.LordService;
-import com.example.test.Service.PlanetService;
+import com.example.test.model.domain.Planet;
+import com.example.test.service.LordService;
+import com.example.test.service.PlanetService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
-import javax.validation.Valid;
 
 
 @Controller
@@ -28,7 +24,7 @@ public class WebPlanetController {
 
     @PostMapping(path = "/planet")
     public String addPlanet(Planet planet) {
-        planetService.addPlanet(planet);
+        planetService.addPlanet(planet.getName());
         return "redirect:/planets";
     }
 
@@ -50,9 +46,9 @@ public class WebPlanetController {
         return "set-lord";
     }
 
-    @PostMapping(path = "/planet/{id}/set-lord")
-    public String setLordView(@PathVariable Long id, @Valid Lord lord) {
-        planetService.setLord(id, lord);
+    @PostMapping(path = "/planet/{id}/lord/{lordId}")
+    public String setLordView(@PathVariable Long id, @PathVariable Long lordId) {
+        planetService.setLord(id, lordId);
         return "redirect:/planets";
     }
 

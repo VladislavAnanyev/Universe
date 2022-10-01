@@ -1,33 +1,23 @@
-package com.example.test.Controllers.api;
+package com.example.test.controllers.api;
 
-import com.example.test.Model.Planet;
-import com.example.test.Model.Lord;
-import com.example.test.Repository.LordRepository;
-import com.example.test.Repository.PlanetRepository;
-import com.example.test.Service.LordService;
+import com.example.test.model.domain.Planet;
+import com.example.test.model.domain.Lord;
+import com.example.test.repository.LordRepository;
+import com.example.test.repository.PlanetRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
 import org.assertj.core.util.Sets;
-import org.hibernate.Hibernate;
 import org.junit.After;
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
-import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
-import javax.transaction.Transactional;
 import java.util.*;
 
 import static org.junit.Assert.assertNotEquals;
@@ -39,8 +29,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @RunWith(SpringRunner.class)
 @AutoConfigureMockMvc
 @SpringBootTest
-@TestPropertySource(
-        locations = "classpath:application-test.properties")
+@ActiveProfiles("test")
 public class ApiLordControllerTest {
 
     @Autowired
@@ -63,10 +52,7 @@ public class ApiLordControllerTest {
 
     @Test
     public void addLord() throws Exception {
-
         Lord lord = new Lord("ПервыйПовелитель", 56);
-
-
 
         mockMvc.perform(
                 post("/api/lord")
@@ -118,12 +104,14 @@ public class ApiLordControllerTest {
         Planet planet = new Planet();
         planet.setName("Планета");
 
-        Lord lord1 = new Lord("ПервыйПовелитель", 56,
-                new HashSet<>(Collections.singleton(planet)));
+        Lord lord1 = new Lord(
+                "ПервыйПовелитель",
+                56,
+                new HashSet<>(Collections.singleton(planet))
+        );
         planet.setLord(lord1);
 
         Lord lord2 = new Lord("ВторойПовелитель", 56);
-
         Lord lord3 = new Lord("ТретийПовелитель", 56);
 
         lordRepository.save(lord1);

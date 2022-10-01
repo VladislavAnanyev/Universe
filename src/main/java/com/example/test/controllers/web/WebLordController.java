@@ -1,13 +1,12 @@
-package com.example.test.Controllers;
+package com.example.test.controllers.web;
 
-import com.example.test.Model.Lord;
-import com.example.test.Service.LordService;
+import com.example.test.model.domain.Lord;
+import com.example.test.service.LordService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.validation.Valid;
 
@@ -24,7 +23,7 @@ public class WebLordController {
 
     @PostMapping(path = "/lord")
     public String createLord(@Valid Lord lord) {
-        lordService.addLord(lord);
+        lordService.addLord(lord.getAge(), lord.getName());
         return "redirect:/lords";
     }
 
@@ -35,7 +34,7 @@ public class WebLordController {
     }
 
 
-    @GetMapping(path = "/lords/youngest10")
+    @GetMapping(path = "/lords/youngest")
     public String getTop10YoungestLord(Model model) {
         model.addAttribute("lords", lordService.getTop10YoungestLord());
         return "lords";
